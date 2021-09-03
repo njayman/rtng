@@ -6,7 +6,6 @@ import TextField from "@material-ui/core/TextField";
 import Snackbar from "@material-ui/core/Snackbar";
 import MuiAlert from "@material-ui/lab/Alert";
 import axios from "axios";
-import { useEffect } from "react";
 import { useRouter } from "next/router";
 
 function Alert(props) {
@@ -127,7 +126,7 @@ const AdminProductEdit = ({ pdct }) => {
           variant="contained"
           type="button"
           className={classes.input}
-          onClick={() => router.back()}
+          onClick={() => router.push("/")}
         >
           Cancel
         </Button>

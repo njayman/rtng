@@ -6,6 +6,7 @@ import TextField from "@material-ui/core/TextField";
 import Snackbar from "@material-ui/core/Snackbar";
 import MuiAlert from "@material-ui/lab/Alert";
 import axios from "axios";
+import { useRouter } from "next/router";
 
 function Alert(props) {
   return <MuiAlert elevation={6} variant="filled" {...props} />;
@@ -26,7 +27,9 @@ const useStyles = makeStyles((theme) => ({
 
 const AdminProductAdd = () => {
   const classes = useStyles();
+  const router = useRouter();
   const [snakcbarOpen, setSnakcbarOpen] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
   const [message, setMessage] = useState({});
   const [product, setProduct] = useState({});
   const changeHandler = (e) => {
@@ -40,6 +43,7 @@ const AdminProductAdd = () => {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setSubmitted(true);
     try {
       const { data } = await axios.post("/api/admin/products/add", product);
       if (data.success) {
@@ -55,6 +59,7 @@ const AdminProductAdd = () => {
       });
     }
     setSnakcbarOpen(true);
+    router.push("/");
   };
   return (
     <>
@@ -108,7 +113,8 @@ const AdminProductAdd = () => {
           variant="contained"
           type="button"
           className={classes.input}
-          onClick={() => router.back()}
+          onClick={() => router.push("/")}
+          disabled={submitted}
         >
           Cancel
         </Button>
@@ -116,6 +122,7 @@ const AdminProductAdd = () => {
           variant="contained"
           color="primary"
           type="submit"
+          disabled={submitted}
           className={classes.input}
         >
           Add Product
