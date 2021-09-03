@@ -153,9 +153,9 @@ const AdminProductEdit = ({ pdct }) => {
 };
 export async function getStaticPaths({ req }) {
   // Fetch data from external API
-  const baseUrl = req ? `${req.protocol}://${req.get("Host")}` : "";
+  const baseUrl = process.env.VERCEL_URL || "http://localhost:3000";
   console.log(baseUrl);
-  const res = await fetch(`http://localhost:3000/api/admin/products`);
+  const res = await fetch(`${baseUrl}/api/admin/products`);
   const data = await res.json();
   const paths = data.products.map((product) => ({
     params: { id: product._id },
@@ -166,11 +166,8 @@ export async function getStaticPaths({ req }) {
   return { paths, fallback: false };
 }
 export async function getStaticProps({ params }) {
-  // params contains the post `id`.
-  // If the route is like /posts/1, then params.id is 1
-  const res = await fetch(
-    `http://localhost:3000/api/admin/products/${params.id}`
-  );
+  const baseUrl = process.env.VERCEL_URL || "http://localhost:3000";
+  const res = await fetch(`${baseUrl}/api/admin/products/${params.id}`);
   const data = await res.json();
 
   // Pass post data to the page via props

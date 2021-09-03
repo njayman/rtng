@@ -88,7 +88,9 @@ export default function Home({ products }) {
 }
 
 export async function getStaticProps() {
-  const res = await fetch(`http://localhost:3000/api/products`);
+  const protocol = req.headers["x-forwarded-proto"] || "http";
+  const baseUrl = process.env.VERCEL_URL || "http://localhost:3000";
+  const res = await fetch(`${baseUrl}/api/products`);
   const data = await res.json();
   if (!data) {
     return {
