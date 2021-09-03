@@ -58,16 +58,10 @@ function MyApp({ Component, pageProps }) {
           <Component {...pageProps} />
         </Container>
         <Typography variant="subtitle2" className={classes.footer}>
-          Rajia Treat and Groceries ©2018 Created by{" "}
-          <MLink
-            color="textPrimary"
-            component={Link}
-            href="https://github.com/njayman"
-          >
-            <a target="_blank" className={classes.link}>
-              Njayman
-            </a>
-          </MLink>
+          Rajia Treat and Groceries ©2018 Created by
+          <Link href="https://github.com/njayman" passHref>
+            <MLink color="textPrimary">Njayman</MLink>
+          </Link>
         </Typography>
       </div>
     </ThemeProvider>

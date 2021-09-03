@@ -50,3 +50,5 @@ yarn start
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the products.
 
 Open [http://localhost:3000/admin/products/add](http://localhost:3000/admin/products/add) to add products.
+
+Repository URL : [https://github.com/njayman/rtng](https://github.com/njayman/rtng)
